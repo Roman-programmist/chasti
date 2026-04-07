@@ -61,17 +61,16 @@ body {
     margin: 0 auto;
     padding: 50px 40px 70px;
     border: 1px solid #e8e0d0;
-    background: #fef9e7;
+    background: #fef9e7 url('images/bumaga.webp') center center / cover no-repeat;
     box-shadow: 0 2px 20px rgba(0,0,0,0.04);
 }
 
+/* Лёгкий осветляющий слой поверх */
 .letter::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: url('images/bumaga.webp') center center / cover no-repeat;
-    opacity: 0.06;
-    filter: brightness(1.5) contrast(0.8);
+    background: rgba(254, 249, 231, 0.6);
     pointer-events: none;
     z-index: 0;
 }
@@ -622,7 +621,7 @@ body {
     }
 
     .letter {
-        padding: 32px 20px 50px;
+        padding: 28px 16px 44px;
     }
 
     .letter::before {
@@ -698,16 +697,19 @@ body {
     .carousel-media {
         width: 100%;
         max-width: 100%;
-        aspect-ratio: 3/4;
-    }
-
-    /* Не-видео картинки — во весь экран */
-    .carousel-media:not(.video-embed) {
         aspect-ratio: 9/16;
     }
 
     .group-photo {
-        aspect-ratio: 9/16;
+        aspect-ratio: auto;
+        min-height: 60vh;
+    }
+
+    .group-photo img {
+        object-fit: contain !important;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
     }
 
     .carousel-info .char-name {
@@ -751,7 +753,7 @@ body {
         font-size: 14px;
     }
 
-    .carousel-media {
-        aspect-ratio: 3/4;
+    .group-photo {
+        min-height: 50vh;
     }
 }

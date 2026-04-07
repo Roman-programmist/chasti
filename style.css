@@ -614,6 +614,7 @@ body {
 
     .header {
         min-height: 360px;
+        overflow: visible;
     }
 
     .header-title {
@@ -622,7 +623,7 @@ body {
 
     /* LETTER - во весь экран на мобильных */
     .letter-section {
-        padding: 20px 0 0;
+        padding: 40px 0 0;
     }
 
     .letter-section .container {
@@ -638,6 +639,7 @@ body {
     }
 
     .letter::before {
+        top: -14px;
         left: 16px;
         font-size: 10px;
     }
@@ -714,11 +716,15 @@ body {
     }
 
     .group-photo {
-        aspect-ratio: 2560/1707;
+        aspect-ratio: auto;
+        height: auto;
     }
 
     .group-photo img {
-        object-fit: cover;
+        object-fit: contain;
+        width: 100%;
+        max-height: 60vh;
+        display: block;
     }
 
     .carousel-info .char-name {

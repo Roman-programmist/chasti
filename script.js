@@ -59,6 +59,9 @@ function move(direction) {
         return;
     }
 
+    // Остановить видео при переключении слайда
+    stopAllVideos();
+
     isAnimating = true;
     const newIndex = index + direction;
     index = newIndex;
@@ -98,7 +101,6 @@ carouselEl.addEventListener('touchend', e => {
     const diffX = startX - e.changedTouches[0].clientX;
     const diffY = startY - e.changedTouches[0].clientY;
 
-    // Свайп достаточно длинный — иначе это тап по видео
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 80) {
         wasSwipe = true;
         move(diffX > 0 ? 1 : -1);
@@ -113,45 +115,73 @@ document.addEventListener('keydown', e => {
 setTransform(false);
 updateCurrent();
 
-// ===== VIDEO TOGGLE (клик по контейнеру) =====
+// ===== VIDEO TOGGLE =====
+function stopAllVideos() {
+    document.querySelectorAll('.char-video').forEach(v => {
+        v.pause();
+    });
+}
+
+function resetVideoToPhoto(mediaContainer) {
+    const photo = mediaContainer.querySelector('.char-photo');
+    const video = mediaContainer.querySelector('.char-video');
+    const layer = mediaContainer.querySelector('.video-click-layer');
+    const watermark = mediaContainer.querySelector('.photo-watermark');
+    if (photo && video) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        video.style.display = 'none';
+        video.controls = false;
+        if (layer) layer.style.display = 'none';
+        photo.style.display = 'block';
+        if (watermark) watermark.style.display = 'block';
+    }
+}
+
+// Фото → клик по контейнеру → видео
+// Видео → клик по слою поверх видео → фото
 document.addEventListener('click', (e) => {
-    // Если только что был свайп — игнорируем click
     if (wasSwipe) {
         wasSwipe = false;
         return;
     }
 
+    // Клик по прозрачному слою поверх видео — переключаем на фото
+    if (e.target.classList.contains('video-click-layer')) {
+        const mediaContainer = e.target.closest('.carousel-media.video-embed');
+        if (!mediaContainer) return;
+        resetVideoToPhoto(mediaContainer);
+        return;
+    }
+
+    // Клик по контейнеру (когда видно фото) — переключаем на видео
     const mediaContainer = e.target.closest('.carousel-media.video-embed');
     if (!mediaContainer) return;
 
     const photo = mediaContainer.querySelector('.char-photo');
     const video = mediaContainer.querySelector('.char-video');
+    const layer = mediaContainer.querySelector('.video-click-layer');
+    const watermark = mediaContainer.querySelector('.photo-watermark');
     if (!photo || !video) return;
+
+    // Если уже видео — игнорируем
+    if (video.style.display === 'block') return;
 
     const slide = mediaContainer.closest('.carousel-slide');
     const videoFile = slide ? slide.dataset.video : null;
     if (!videoFile) return;
 
-    const isShowingVideo = video.style.display === 'block';
-
-    if (isShowingVideo) {
-        // Переключаем на фото
-        video.pause();
-        video.removeAttribute('src');
+    if (!video.querySelector('source') && !video.src) {
+        video.src = 'video/' + videoFile;
         video.load();
-        video.style.display = 'none';
-        photo.style.display = 'block';
-    } else {
-        // Подгружаем видео только при первом клике
-        if (!video.querySelector('source') && !video.src) {
-            video.src = 'video/' + videoFile;
-            video.load();
-        }
-        photo.style.display = 'none';
-        video.style.display = 'block';
-        video.controls = true;
-        video.play().catch(() => {});
     }
+    photo.style.display = 'none';
+    video.style.display = 'block';
+    video.controls = true;
+    layer.style.display = 'block';
+    if (watermark) watermark.style.display = 'none';
+    video.play().catch(() => {});
 });
 
 // ===== SCROLL TO TOP =====

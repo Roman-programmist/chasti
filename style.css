@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #000;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.header-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/nachalo.jpg') center center / cover no-repeat;
+    z-index: 0;
+}
+
+.header-title {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(60px, 12vw, 160px);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.6);
+}
+
+/* ===== LETTER / О НАС ===== */
+.letter-section {
+    padding: 80px 0 60px;
+    background: #fff;
+}
+
+.letter {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px 40px 70px;
+    border: 1px solid #e8e0d0;
+    background: #fef9e7 url('images/bumaga.webp') center center / cover no-repeat;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+}
+
+.letter::before {
+    content: 'О НАС';
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    background: #fef9e7;
+    padding: 0 10px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+/* Текст письма — каждая строка с линией */
+.letter-text {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+}
+
+.letter-paragraph {
+    margin-bottom: 20px;
+}
+
+.letter-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.letter-row {
+    display: block;
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.letter-row-bold {
+    font-weight: 700;
+    color: #000;
+}
+
+.letter-row b,
+.letter-row strong {
+    color: #222;
+    font-weight: 600;
+}
+
+/* Отступ "Про что мы?" от основного текста */
+.letter-about-what {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.letter-signature {
+    position: absolute;
+    bottom: 25px;
+    right: 40px;
+    font-size: 14px;
+    font-style: italic;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+.logo-sk {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.logo-sk img {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    opacity: 0.9;
+}
+
+/* ===== PART SECTION ===== */
+.part-section {
+    padding: 0 0 80px;
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Фон только для заголовка, мета и сути */
+.part-header {
+    position: relative;
+    background: #f5f0e8;
+    padding: 60px 40px;
+    margin: -60px -40px 0;
+    overflow: hidden;
+}
+
+.part-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('images/fon.jpg') center center / cover no-repeat;
+    opacity: 0.15;
+    filter: brightness(1.3) contrast(0.9);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.part-header > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Светлый блок: тёмный текст */
+.part-header .part-title {
+    color: #111;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: clamp(20px, 3.5vw, 30px);
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+}
+
+.part-header .meta-label {
+    color: #888;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.part-header .meta-value {
+    color: #111;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.part-header .essence-block h3 {
+    color: #888;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.part-header .essence-block p {
+    color: #333;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
+.part-header .essence-block p:last-child {
+    color: #888;
+    font-style: italic;
+}
+
+/* Линии-разделители */
+.part-header .meta-grid {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 24px;
+    margin-bottom: 30px;
+}
+
+.part-header .essence-block {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 24px;
+    margin-bottom: 0;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meta-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #aaa;
+}
+
+.meta-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+}
+
+.essence-block {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.essence-block h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #aaa;
+    margin-bottom: 16px;
+}
+
+.essence-block p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+    max-width: 700px;
+}
+
+/* ===== PARTICIPANTS ===== */
+.participants-section {
+    margin-bottom: 60px;
+    padding-top: 40px;
+}
+
+.participants-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.participants-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.participant-col h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #bbb;
+    margin-bottom: 16px;
+}
+
+.participant-name {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.participant-name:last-child {
+    border-bottom: none;
+}
+
+/* ===== CHARACTER CAROUSEL ===== */
+.character-carousel {
+    margin-bottom: 40px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 10px 0;
+}
+
+.carousel-media {
+    flex-shrink: 0;
+    width: 460px;
+    max-width: 50vw;
+    aspect-ratio: 2560/1707;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.carousel-media img,
+.carousel-media .placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-media.video-embed {
+    background: #000;
+    border-color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.carousel-media.video-embed .char-photo,
+.carousel-media.video-embed .char-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-media.video-embed .char-video {
+    object-fit: contain;
+    background: #000;
+    display: none;
+}
+
+/* Индикатор видео — полностью скрыт */
+.carousel-media.video-embed .video-indicator {
+    display: none !important;
+}
+
+.carousel-media:hover {
+    border-color: #999;
+    transform: scale(1.01);
+}
+
+.carousel-info {
+    flex: 1;
+    padding-top: 10px;
+}
+
+.carousel-info .char-name {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.carousel-info .char-desc {
+    margin-bottom: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.carousel-info .char-desc .line {
+    height: 1px;
+    background: #e0e0e0;
+    margin-bottom: 12px;
+}
+
+.carousel-info .char-actor {
+    font-size: 12px;
+    color: #999;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* CAROUSEL CONTROLS */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.carousel-counter {
+    font-size: 12px;
+    color: #bbb;
+    letter-spacing: 2px;
+}
+
+.carousel-counter .current {
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.carousel-arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.carousel-arrows button {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.carousel-arrows button:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* ===== VK ===== */
+.vk-section {
+    padding: 30px 0;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.vk-section a {
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+    text-decoration: none;
+    padding: 14px 28px;
+    border: 1px solid #ccc;
+    transition: all 0.3s;
+}
+
+.vk-section a:hover {
+    color: #fff;
+    border-color: #000;
+    background: #000;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: 20px 0 30px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+/* ===== SCROLL TO TOP ===== */
+.scroll-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 52px;
+    height: 52px;
+    background: transparent;
+    color: #000;
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px) scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s, border-color 0.2s, color 0.2s;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.scroll-top:hover {
+    border-color: #000;
+    color: #000;
+}
+
+.scroll-top svg {
+    transition: transform 0.3s ease;
+}
+
+.scroll-top:hover svg {
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .header {
+        min-height: 360px;
+    }
+
+    .header-title {
+        font-size: clamp(48px, 15vw, 80px);
+    }
+
+    .letter {
+        padding: 32px 20px 50px;
+    }
+
+    .letter::before {
+        left: 16px;
+        font-size: 10px;
+    }
+
+    .letter-row {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .letter-signature {
+        right: 20px;
+        bottom: 16px;
+        font-size: 11px;
+    }
+
+    .logo-sk img {
+        max-width: 85%;
+    }
+
+    .part-header {
+        padding: 40px 20px;
+        margin: -40px -16px 0;
+    }
+
+    .part-header::before {
+        opacity: 0.08;
+    }
+
+    .part-header .part-title {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
+
+    .participants-section {
+        padding-top: 24px;
+    }
+
+    .participants-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 36px;
+        padding-bottom: 20px;
+    }
+
+    .participant-col h4 {
+        font-size: 9px;
+        margin-bottom: 12px;
+    }
+
+    .participant-name {
+        font-size: 12px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .carousel-slide {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carousel-media {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 4/3;
+    }
+
+    .carousel-info .char-name {
+        font-size: 16px;
+    }
+
+    .carousel-info .char-desc {
+        font-size: 12px;
+    }
+
+    .carousel-controls {
+        margin-top: 20px;
+        padding-top: 16px;
+    }
+
+    .carousel-arrows button {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .scroll-top {
+        bottom: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* VERY SMALL SCREENS */
+@media (max-width: 400px) {
+    .letter {
+        padding: 24px 14px 40px;
+    }
+
+    .letter-row {
+        font-size: 11px;
+    }
+
+    .part-header .part-title {
+        font-size: 14px;
+    }
+
+    .carousel-media {
+        aspect-ratio: 3/4;
+    }
+}

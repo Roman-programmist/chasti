@@ -145,12 +145,17 @@ function resetVideoToPhoto(mediaContainer) {
 // Отслеживаем выход из fullscreen — сбрасываем на фото
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement && activeVideoContainer) {
-        // Небольшая задержка чтобы видео успело остановиться
-        setTimeout(() => {
-            if (activeVideoContainer) {
-                resetVideoToPhoto(activeVideoContainer);
-            }
-        }, 300);
+        // Принудительно восстанавливаем viewport
+        const meta = document.querySelector('meta[name="viewport"]');
+        if (meta) {
+            const content = meta.getAttribute('content');
+            meta.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            // Небольшой тик чтобы браузер пересчитал layout
+            requestAnimationFrame(() => {
+                meta.setAttribute('content', content);
+            });
+        }
+        resetVideoToPhoto(activeVideoContainer);
     }
 });
 

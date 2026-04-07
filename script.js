@@ -116,6 +116,8 @@ setTransform(false);
 updateCurrent();
 
 // ===== VIDEO TOGGLE =====
+let activeVideoContainer = null;
+
 function stopAllVideos() {
     document.querySelectorAll('.char-video').forEach(v => {
         v.pause();
@@ -137,31 +139,43 @@ function resetVideoToPhoto(mediaContainer) {
         photo.style.display = 'block';
         if (watermark) watermark.style.display = 'block';
     }
+    activeVideoContainer = null;
 }
 
-// Фото → клик по контейнеру → видео
-// Видео → клик по слою поверх видео → фото
+// Отслеживаем выход из fullscreen — сбрасываем на фото
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && activeVideoContainer) {
+        // Небольшая задержка чтобы видео успело остановиться
+        setTimeout(() => {
+            if (activeVideoContainer) {
+                resetVideoToPhoto(activeVideoContainer);
+            }
+        }, 300);
+    }
+});
+
+// Фото → клик → видео в полный экран
 document.addEventListener('click', (e) => {
     if (wasSwipe) {
         wasSwipe = false;
         return;
     }
 
-    // Клик по прозрачному слою поверх видео — переключаем на фото
+    // Клик по прозрачному слою поверх видео — выходим из fullscreen
     if (e.target.classList.contains('video-click-layer')) {
-        const mediaContainer = e.target.closest('.carousel-media.video-embed');
-        if (!mediaContainer) return;
-        resetVideoToPhoto(mediaContainer);
+        e.preventDefault();
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
         return;
     }
 
-    // Клик по контейнеру (когда видно фото) — переключаем на видео
+    // Клик по контейнеру (когда видно фото) → видео в полный экран
     const mediaContainer = e.target.closest('.carousel-media.video-embed');
     if (!mediaContainer) return;
 
     const photo = mediaContainer.querySelector('.char-photo');
     const video = mediaContainer.querySelector('.char-video');
-    const layer = mediaContainer.querySelector('.video-click-layer');
     const watermark = mediaContainer.querySelector('.photo-watermark');
     if (!photo || !video) return;
 
@@ -172,16 +186,30 @@ document.addEventListener('click', (e) => {
     const videoFile = slide ? slide.dataset.video : null;
     if (!videoFile) return;
 
+    // Подгружаем видео
     if (!video.querySelector('source') && !video.src) {
         video.src = 'video/' + videoFile;
         video.load();
     }
+
     photo.style.display = 'none';
     video.style.display = 'block';
     video.controls = true;
-    layer.style.display = 'block';
     if (watermark) watermark.style.display = 'none';
-    video.play().catch(() => {});
+
+    // Пробуем fullscreen
+    const goFullscreen = () => {
+        video.play().catch(() => {});
+        activeVideoContainer = mediaContainer;
+        const requestFullscreen = video.requestFullscreen || video.webkitRequestFullscreen || video.msRequestFullscreen;
+        if (requestFullscreen) {
+            requestFullscreen.call(video).catch(() => {
+                // Если fullscreen недоступен — просто показываем видео
+            });
+        }
+    };
+
+    goFullscreen();
 });
 
 // ===== SCROLL TO TOP =====

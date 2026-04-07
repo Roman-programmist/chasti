@@ -715,14 +715,6 @@ body {
         aspect-ratio: 2560/1707;
     }
 
-    .group-photo {
-        aspect-ratio: 2560/1707;
-    }
-
-    .group-photo img {
-        object-fit: cover;
-    }
-
     .carousel-info .char-name {
         font-size: 16px;
     }
@@ -762,9 +754,5 @@ body {
 
     .part-header .part-title {
         font-size: 14px;
-    }
-
-    .group-photo {
-        aspect-ratio: 2560/1707;
     }
 }

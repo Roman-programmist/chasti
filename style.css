@@ -620,14 +620,20 @@ body {
         font-size: clamp(48px, 15vw, 80px);
     }
 
-    /* LETTER - такая же ширина как Часть 1 */
+    /* LETTER - во весь экран на мобильных */
     .letter-section {
+        padding: 0;
+    }
+
+    .letter-section .container {
         padding: 0;
     }
 
     .letter {
         margin: 0;
         max-width: 100%;
+        border: none;
+        border-radius: 0;
         padding: 28px 16px 44px;
     }
 

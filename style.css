@@ -622,7 +622,7 @@ body {
 
     /* LETTER - во весь экран на мобильных */
     .letter-section {
-        padding: 0;
+        padding: 20px 0 0;
     }
 
     .letter-section .container {
@@ -714,15 +714,11 @@ body {
     }
 
     .group-photo {
-        aspect-ratio: auto;
-        min-height: 50vh;
+        aspect-ratio: 2560/1707;
     }
 
     .group-photo img {
-        object-fit: contain !important;
-        width: 100%;
-        height: auto;
-        max-height: 80vh;
+        object-fit: cover;
     }
 
     .carousel-info .char-name {

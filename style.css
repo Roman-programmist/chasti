@@ -620,7 +620,14 @@ body {
         font-size: clamp(48px, 15vw, 80px);
     }
 
+    /* LETTER - такая же ширина как Часть 1 */
+    .letter-section {
+        padding: 0;
+    }
+
     .letter {
+        margin: 0;
+        max-width: 100%;
         padding: 28px 16px 44px;
     }
 
@@ -697,12 +704,12 @@ body {
     .carousel-media {
         width: 100%;
         max-width: 100%;
-        aspect-ratio: 9/16;
+        aspect-ratio: 2560/1707;
     }
 
     .group-photo {
         aspect-ratio: auto;
-        min-height: 60vh;
+        min-height: 50vh;
     }
 
     .group-photo img {
